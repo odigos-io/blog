@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-deployment
+spec:
+  selector:
+    matchLabels:
+      app: express-svr
+  template:
+    metadata:
+      labels:
+        app: express-svr
+    spec:
+      containers:
+        - name: express-svr
+          image: express-server
+          imagePullPolicy: Never # Make sure to set it to Never, or else it will pull from the docker hub and fail.
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000

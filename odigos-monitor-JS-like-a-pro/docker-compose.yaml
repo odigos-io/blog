@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  microservice1:
+    build:
+      context: ./src/microservice-1
+      dockerfile: Dockerfile
+    ports:
+      - "30001:3001"
+    depends_on:
+      - microservice2
+
+  microservice2:
+    build:
+      context: ./src/microservice-2
+      dockerfile: Dockerfile
+    ports:
+      - "30002:3002"
